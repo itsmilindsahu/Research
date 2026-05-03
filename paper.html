@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RRSM Paper – Milind Sahu | IISER Tirupati</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>RRSM Paper – Milind Sahu</title>
   <style>
     :root {
       --ink:    #0d0f14;
-      --paper:  #f5f2eb;
       --accent: #c0392b;
       --gold:   #b5882a;
-      --muted:  #7a7670;
-      --border: #d5d0c5;
+      --mono:   'Courier New', Courier, monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,218 +18,168 @@
       height: 100%;
       overflow: hidden;
       background: #1a1c22;
-      font-family: 'DM Sans', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     /* ── TOP BAR ── */
     .topbar {
-      height: 52px;
-      background: var(--ink);
+      height: 50px;
+      background: #0d0f14;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      border-bottom: 2px solid #333;
+      padding: 0 18px;
+      border-bottom: 1px solid #2a2d35;
       flex-shrink: 0;
       position: relative;
       z-index: 10;
     }
 
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .topbar-left { display: flex; align-items: center; gap: 14px; }
 
     .back-btn {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: transparent;
-      border: 1px solid #444;
-      color: #aaa;
+      border: 1px solid #383c48;
+      color: #888;
       padding: 5px 12px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
       cursor: pointer;
       text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.15s, color 0.15s;
     }
     .back-btn:hover { border-color: var(--gold); color: var(--gold); }
 
     .paper-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: #888;
-      letter-spacing: 0.06em;
-      max-width: 500px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #555;
+      letter-spacing: 0.04em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 460px;
     }
+    .paper-title b { color: #999; }
 
-    .paper-title span {
-      color: #ccc;
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .topbar-right { display: flex; gap: 8px; }
 
     .action-btn {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
+      gap: 5px;
+      padding: 6px 13px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
       text-decoration: none;
       border: none;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: opacity 0.15s;
     }
-
-    .btn-download {
-      background: var(--accent);
-      color: white;
-    }
-    .btn-download:hover { background: #a93226; }
-
-    .btn-newwin {
-      background: #2a2e38;
-      color: #ccc;
-      border: 1px solid #444;
-    }
-    .btn-newwin:hover { background: #363b48; color: white; }
+    .action-btn:hover { opacity: 0.82; }
+    .btn-dl  { background: var(--accent); color: white; }
+    .btn-tab { background: #252830; color: #bbb; border: 1px solid #383c48; }
 
     /* ── LAYOUT ── */
     .layout {
       display: flex;
-      height: calc(100vh - 52px);
+      height: calc(100vh - 50px);
     }
 
     /* ── SIDEBAR ── */
     .sidebar {
-      width: 280px;
+      width: 260px;
       flex-shrink: 0;
-      background: #13151a;
-      border-right: 1px solid #2a2d35;
+      background: #111318;
+      border-right: 1px solid #1e2028;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
     }
 
-    .sidebar-section {
-      padding: 20px 18px;
-      border-bottom: 1px solid #1e2028;
+    .sb-block {
+      padding: 18px 16px;
+      border-bottom: 1px solid #1a1d24;
     }
 
-    .sidebar-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+    .sb-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #555;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .paper-name {
+      font-size: 0.82rem;
+      color: #ccc;
+      line-height: 1.45;
       margin-bottom: 12px;
     }
 
-    .paper-info-title {
-      font-size: 0.88rem;
-      color: #ddd;
-      line-height: 1.4;
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
-
-    .author-chip {
-      display: inline-flex;
+    .author-row {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      background: #1e2028;
-      border: 1px solid #2a2d35;
-      padding: 5px 10px;
-      border-radius: 2px;
-      margin-bottom: 8px;
+      gap: 8px;
+      background: #1a1d24;
+      border: 1px solid #252830;
+      padding: 7px 10px;
+      margin-bottom: 6px;
     }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .author-name { font-size: 0.78rem; color: #bbb; font-weight: 500; }
+    .author-inst { font-size: 0.65rem; color: #555; font-family: var(--mono); }
 
-    .author-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .author-name {
-      font-size: 0.78rem;
-      color: #bbb;
-      font-weight: 500;
-    }
-
-    .author-inst {
-      font-size: 0.68rem;
-      color: #666;
-      font-family: 'DM Mono', monospace;
-    }
-
-    .status-badge {
+    .badge {
       display: inline-block;
-      background: #1a2a1a;
-      border: 1px solid #2a4a2a;
-      color: #5a9a5a;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
+      background: #111f11;
+      border: 1px solid #1e3a1e;
+      color: #4a8a4a;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
       padding: 3px 8px;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
-    .toc-list {
-      list-style: none;
+    .toc { list-style: none; }
+    .toc li {
+      border-bottom: 1px solid #161820;
     }
-
-    .toc-item {
-      padding: 6px 0;
-      border-bottom: 1px solid #1a1c22;
-      cursor: pointer;
-    }
-
-    .toc-item a {
-      font-size: 0.78rem;
-      color: #777;
-      text-decoration: none;
+    .toc li a {
       display: flex;
       align-items: baseline;
       gap: 8px;
-      transition: color 0.15s;
-    }
-
-    .toc-item a:hover { color: var(--gold); }
-
-    .toc-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: #444;
-      min-width: 18px;
-    }
-
-    .keyword-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .tag {
-      background: #1e2028;
-      border: 1px solid #2a2d35;
+      padding: 7px 2px;
+      font-size: 0.76rem;
       color: #666;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      padding: 3px 7px;
-      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: color 0.12s;
     }
+    .toc li a:hover { color: var(--gold); }
+    .toc-n { font-family: var(--mono); font-size: 0.62rem; color: #3a3d48; min-width: 16px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      background: #1a1d24;
+      border: 1px solid #252830;
+      color: #555;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      padding: 3px 7px;
+      letter-spacing: 0.04em;
+    }
+
+    /* scrollbar */
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-track { background: #111318; }
+    .sidebar::-webkit-scrollbar-thumb { background: #252830; }
 
     /* ── PDF AREA ── */
     .pdf-area {
@@ -241,7 +187,6 @@
       display: flex;
       flex-direction: column;
       background: #23262e;
-      position: relative;
     }
 
     .pdf-area iframe {
@@ -252,85 +197,76 @@
       display: block;
     }
 
-    /* scrollbar */
-    .sidebar::-webkit-scrollbar { width: 4px; }
-    .sidebar::-webkit-scrollbar-track { background: #13151a; }
-    .sidebar::-webkit-scrollbar-thumb { background: #2a2d35; }
-
-    /* mobile: hide sidebar */
-    @media (max-width: 640px) {
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
       .sidebar { display: none; }
-      .topbar { padding: 0 12px; }
       .paper-title { display: none; }
+      .topbar { padding: 0 12px; }
     }
   </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-left">
     <a class="back-btn" href="index.html">← Back</a>
     <div class="paper-title">
-      <span>RRSM</span> · Reliability-Aware Survival ML for Credit Risk · Milind Sahu
+      <b>RRSM</b> · Reliability-Aware Survival ML for Credit Risk · Milind Sahu
     </div>
   </div>
   <div class="topbar-right">
-    <a class="action-btn btn-newwin" href="research.pdf" target="_blank">↗ New tab</a>
-    <a class="action-btn btn-download" href="research.pdf" download="RRSM_Milind_Sahu.pdf">⬇ Download</a>
+    <a class="action-btn btn-tab" href="research.pdf" target="_blank">↗ New tab</a>
+    <a class="action-btn btn-dl" href="research.pdf" download="RRSM_Milind_Sahu.pdf">⬇ Download</a>
   </div>
 </div>
 
 <div class="layout">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <div class="sidebar-section">
-      <div class="sidebar-label">Paper</div>
-      <div class="paper-info-title">Reliability-Aware Survival Machine Learning for Credit Default and Prepayment Risk in Fintech</div>
-      <div class="author-chip">
-        <div class="author-dot"></div>
+    <div class="sb-block">
+      <div class="sb-label">Paper</div>
+      <div class="paper-name">Reliability-Aware Survival Machine Learning for Credit Default and Prepayment Risk in Fintech</div>
+      <div class="author-row">
+        <div class="dot"></div>
         <div>
           <div class="author-name">Milind Sahu</div>
           <div class="author-inst">IISER Tirupati · BS-MS Y1</div>
         </div>
       </div>
-      <br/>
-      <div class="sidebar-label">Dataset</div>
-      <div style="font-size:0.78rem; color:#888;">Freddie Mac Single-Family Loan-Level Dataset</div>
-      <div class="status-badge">● Early-Stage Proposal</div>
+      <div class="sb-label" style="margin-top:12px;">Dataset</div>
+      <div style="font-size:0.76rem; color:#777;">Freddie Mac Single-Family Loan-Level Dataset</div>
+      <div class="badge">● Early-Stage Proposal</div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Contents</div>
-      <ul class="toc-list">
-        <li class="toc-item"><a href="#"><span class="toc-num">1</span>Introduction</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">2</span>Credit Risk as a Time-to-Event Problem</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">3</span>Survival Analysis & Reliability Theory</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">4</span>ML Methods for Survival Prediction</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">5</span>Reliability-Aware Modeling Ideas</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">6</span>Main Contribution & Experimental Goal</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">7</span>Dataset Construction</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">8</span>Model Families & Baselines</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">9</span>RRSM – Proposed Model</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">10</span>Experimental Plan</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">11</span>Experiment Matrix</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">12</span>Evaluation Metrics</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">13</span>Calibration & Model-Risk</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">14</span>Ablation Studies</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">15</span>Robustness & Uncertainty</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">16</span>Portfolio-Level Evaluation</a></li>
-        <li class="toc-item"><a href="#"><span class="toc-num">22</span>Conclusion</a></li>
+    <div class="sb-block">
+      <div class="sb-label">Contents</div>
+      <ul class="toc">
+        <li><a href="#"><span class="toc-n">1</span>Introduction</a></li>
+        <li><a href="#"><span class="toc-n">2</span>Credit Risk as Time-to-Event</a></li>
+        <li><a href="#"><span class="toc-n">3</span>Survival Analysis &amp; Reliability Theory</a></li>
+        <li><a href="#"><span class="toc-n">4</span>ML Methods for Survival Prediction</a></li>
+        <li><a href="#"><span class="toc-n">5</span>Reliability-Aware Modeling Ideas</a></li>
+        <li><a href="#"><span class="toc-n">6</span>Main Contribution &amp; Goal</a></li>
+        <li><a href="#"><span class="toc-n">7</span>Dataset Construction</a></li>
+        <li><a href="#"><span class="toc-n">8</span>Model Families &amp; Baselines</a></li>
+        <li><a href="#"><span class="toc-n">9</span>RRSM – Proposed Model</a></li>
+        <li><a href="#"><span class="toc-n">10</span>Experimental Plan</a></li>
+        <li><a href="#"><span class="toc-n">11</span>Experiment Matrix</a></li>
+        <li><a href="#"><span class="toc-n">12</span>Evaluation Metrics</a></li>
+        <li><a href="#"><span class="toc-n">13</span>Calibration &amp; Model-Risk</a></li>
+        <li><a href="#"><span class="toc-n">14</span>Ablation Studies</a></li>
+        <li><a href="#"><span class="toc-n">15</span>Robustness &amp; Uncertainty</a></li>
+        <li><a href="#"><span class="toc-n">16</span>Portfolio-Level Evaluation</a></li>
+        <li><a href="#"><span class="toc-n">22</span>Conclusion</a></li>
       </ul>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Keywords</div>
-      <div class="keyword-tags">
+    <div class="sb-block">
+      <div class="sb-label">Keywords</div>
+      <div class="tags">
         <span class="tag">Survival Analysis</span>
         <span class="tag">Credit Default</span>
-        <span class="tag">Prepayment Risk</span>
+        <span class="tag">Prepayment</span>
         <span class="tag">Hazard Function</span>
         <span class="tag">Reliability Theory</span>
         <span class="tag">Censoring</span>
@@ -340,13 +276,11 @@
         <span class="tag">Calibration</span>
       </div>
     </div>
-
   </aside>
 
-  <!-- PDF VIEWER -->
   <div class="pdf-area">
     <iframe
-      src="research.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+      src="research.pdf#toolbar=1&navpanes=0&view=FitH"
       title="RRSM Research Paper – Milind Sahu">
     </iframe>
   </div>
