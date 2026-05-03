@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RRSM – Reliability-Aware Survival ML for Credit Risk | Milind Sahu</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>RRSM – Reliability-Aware Survival ML | Milind Sahu</title>
   <style>
     :root {
       --ink:    #0d0f14;
@@ -15,284 +13,157 @@
       --gold:   #b5882a;
       --muted:  #7a7670;
       --border: #d5d0c5;
+      --serif:  'Georgia', 'Times New Roman', serif;
+      --sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono:   'Courier New', Courier, monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--paper);
       color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
+      font-family: var(--sans);
       line-height: 1.7;
-      min-height: 100vh;
     }
 
-    /* ─── NOISE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0;
-      opacity: 0.6;
-    }
-
-    /* ─── HEADER / HERO ─── */
-    header {
-      position: relative;
-      border-bottom: 2px solid var(--ink);
-      padding: 0;
-      overflow: hidden;
-    }
-
+    /* ── HEADER BAR ── */
     .header-bar {
       background: var(--ink);
-      color: var(--paper);
+      color: #aaa;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 40px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
     }
+    .header-bar span:last-child { color: var(--accent); }
 
+    /* ── HERO ── */
     .hero {
       display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 0;
-      min-height: 420px;
+      grid-template-columns: 1fr 300px;
+      border-bottom: 2px solid var(--ink);
     }
 
     .hero-left {
-      padding: 56px 48px 48px;
+      padding: 52px 48px 44px;
       border-right: 2px solid var(--ink);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
 
     .label-tag {
       display: inline-block;
       background: var(--accent);
       color: white;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       padding: 4px 12px;
       margin-bottom: 20px;
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      max-width: 680px;
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      max-width: 660px;
       margin-bottom: 24px;
     }
-
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
+    h1 em { font-style: italic; color: var(--accent); }
 
     .meta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      align-items: center;
-      margin-top: auto;
-      padding-top: 28px;
+      gap: 24px;
+      margin-top: 28px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
     }
 
-    .meta-item {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-family: 'DM Mono', monospace;
-    }
-
-    .meta-item strong { color: var(--ink); display: block; font-size: 0.85rem; }
+    .meta-item { font-size: 0.78rem; color: var(--muted); }
+    .meta-item strong { color: var(--ink); display: block; font-size: 0.82rem; margin-bottom: 2px; }
 
     .hero-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 40px 32px;
+      padding: 36px 28px;
       background: var(--cream);
     }
-
     .hero-right h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
       padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .keyword-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    .keyword-list { display: flex; flex-wrap: wrap; gap: 7px; }
     .keyword {
       background: var(--paper);
       border: 1px solid var(--border);
-      padding: 4px 10px;
-      font-size: 0.72rem;
-      font-family: 'DM Mono', monospace;
+      padding: 3px 9px;
+      font-size: 0.68rem;
+      font-family: var(--mono);
       color: var(--muted);
-      letter-spacing: 0.05em;
     }
 
-    /* ─── ACTIONS ─── */
+    /* ── ACTIONS ── */
     .actions-strip {
       display: flex;
-      gap: 0;
       border-bottom: 2px solid var(--ink);
     }
 
     .btn {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 18px 32px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
+      gap: 8px;
+      padding: 16px 28px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
       border-right: 2px solid var(--ink);
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: white;
       flex: 1;
+      justify-content: center;
+      transition: opacity 0.15s;
     }
-    .btn-primary:hover { background: #a93226; }
+    .btn:hover { opacity: 0.82; }
+    .btn-primary   { background: var(--accent); color: white; }
+    .btn-secondary { background: var(--ink); color: var(--paper); }
+    .btn-ghost     { background: transparent; color: var(--ink); border-right: none; }
+    .btn-ghost:hover { background: var(--cream); opacity: 1; }
 
-    .btn-secondary {
-      background: var(--ink);
-      color: var(--paper);
-      flex: 1;
-    }
-    .btn-secondary:hover { background: #2a2e38; }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--ink);
-      flex: 1;
-    }
-    .btn-ghost:hover { background: var(--cream); }
-
-    .btn-icon { font-size: 1.1rem; }
-
-    /* ─── ABSTRACT ─── */
+    /* ── ABSTRACT ── */
     .section {
-      padding: 56px 48px;
+      padding: 52px 48px;
       border-bottom: 1px solid var(--border);
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
     }
 
     .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-    .section-label::after {
-      content: '';
-      height: 1px;
-      background: var(--border);
-      flex: 1;
-    }
+    h2 { font-family: var(--serif); font-size: 1.55rem; margin-bottom: 16px; }
+    p  { margin-bottom: 1em; color: #2a2e38; font-size: 0.94rem; }
 
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      margin-bottom: 18px;
-      line-height: 1.2;
-    }
-
-    p { margin-bottom: 1em; color: #2a2e38; }
-
-    /* ─── PDF VIEWER ─── */
-    .pdf-section {
-      padding: 0 48px 56px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .pdf-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 0 18px;
-      border-bottom: 2px solid var(--ink);
-      margin-bottom: 0;
-    }
-
-    .pdf-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      margin: 0;
-    }
-
-    .pdf-controls {
-      display: flex;
-      gap: 8px;
-    }
-
-    .pdf-btn {
-      background: var(--ink);
-      color: var(--paper);
-      border: none;
-      padding: 8px 16px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s;
-    }
-    .pdf-btn:hover { background: var(--accent); }
-
-    .pdf-frame-wrapper {
-      border: 2px solid var(--ink);
-      border-top: none;
-      background: var(--cream);
-    }
-
-    .pdf-frame-wrapper iframe {
-      display: block;
-      width: 100%;
-      height: 820px;
-      border: none;
-    }
-
-    /* ─── HIGHLIGHTS GRID ─── */
+    /* ── HIGHLIGHTS ── */
     .highlights {
-      padding: 56px 48px;
+      padding: 52px 48px;
       border-top: 2px solid var(--ink);
       border-bottom: 1px solid var(--border);
     }
@@ -300,167 +171,75 @@
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
       border: 2px solid var(--ink);
-      margin-top: 24px;
+      margin-top: 22px;
     }
-
-    .grid-card {
-      padding: 28px 24px;
-      border-right: 1px solid var(--border);
-    }
-
+    .grid-card { padding: 26px 22px; border-right: 1px solid var(--border); }
     .grid-card:last-child { border-right: none; }
+    .card-number { font-family: var(--serif); font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .card-title  { font-weight: 600; font-size: 0.88rem; margin-bottom: 6px; }
+    .card-desc   { font-size: 0.78rem; color: var(--muted); margin: 0; }
 
-    .card-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      font-weight: 900;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .card-title {
-      font-weight: 500;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-    }
-
-    .card-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    /* ─── EXPERIMENTS TABLE ─── */
-    .table-section {
-      padding: 56px 48px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 24px;
-      font-size: 0.82rem;
-    }
-
-    thead tr {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    thead th {
-      text-align: left;
-      padding: 12px 16px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      font-weight: 400;
-    }
-
+    /* ── TABLE ── */
+    .table-section { padding: 52px 48px; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; margin-top: 22px; font-size: 0.82rem; }
+    thead tr { background: var(--ink); color: var(--paper); }
+    thead th { text-align: left; padding: 11px 15px; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.09em; font-weight: 400; }
     tbody tr { border-bottom: 1px solid var(--border); }
     tbody tr:hover { background: var(--cream); }
+    tbody td { padding: 11px 15px; }
+    .exp-num { font-family: var(--mono); color: var(--accent); font-weight: 600; }
 
-    tbody td { padding: 12px 16px; }
-
-    .exp-num {
-      font-family: 'DM Mono', monospace;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    /* ─── FOOTER ─── */
+    /* ── FOOTER ── */
     footer {
       background: var(--ink);
       color: var(--paper);
-      padding: 40px 48px;
+      padding: 36px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
     }
-
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
+    footer a { color: var(--gold); text-decoration: none; font-family: var(--mono); font-size: 0.78rem; }
     footer a:hover { text-decoration: underline; }
+    .foot-right { font-family: var(--mono); font-size: 0.68rem; color: #666; text-align: right; }
 
-    footer .foot-right {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: #7a8090;
-      text-align: right;
-    }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-left > * { animation: fadeUp 0.7s ease both; }
-    .hero-left > *:nth-child(1) { animation-delay: 0.05s; }
-    .hero-left > *:nth-child(2) { animation-delay: 0.15s; }
-    .hero-left > *:nth-child(3) { animation-delay: 0.25s; }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 36px 24px 28px; border-right: none; border-bottom: 2px solid var(--ink); }
-      .hero-right { padding: 24px; }
+      .hero-left { padding: 32px 20px 24px; border-right: none; border-bottom: 2px solid var(--ink); }
+      .hero-right { padding: 20px; }
+      .header-bar { padding: 8px 16px; }
       .actions-strip { flex-direction: column; }
       .btn { border-right: none; border-bottom: 2px solid var(--ink); }
-      .section, .pdf-section, .highlights, .table-section { padding: 36px 24px; }
+      .section, .highlights, .table-section { padding: 32px 20px; }
       .grid-3 { grid-template-columns: 1fr; }
       .grid-card { border-right: none; border-bottom: 1px solid var(--border); }
-      .header-bar { padding: 10px 20px; flex-direction: column; gap: 4px; text-align: center; }
-      footer { flex-direction: column; padding: 28px 24px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+      .foot-right { text-align: left; }
     }
   </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<header>
-  <div class="header-bar">
-    <span>BS-MS Research · IISER Tirupati · 2024–2025</span>
-    <span>WORKING PAPER · EARLY STAGE · NO RESULTS YET</span>
-  </div>
+<div class="header-bar">
+  <span>BS-MS Research · IISER Tirupati · 2024–2025</span>
+  <span>WORKING PAPER · NO RESULTS YET</span>
+</div>
 
+<header>
   <div class="hero">
     <div class="hero-left">
-      <div>
-        <div class="label-tag">Research Proposal</div>
-        <h1>Reliability-Aware Survival Machine Learning<br/>for <em>Credit Default</em> &amp; Prepayment Risk in Fintech</h1>
-      </div>
+      <div class="label-tag">Research Proposal</div>
+      <h1>Reliability-Aware Survival Machine Learning for <em>Credit Default</em> &amp; Prepayment Risk in Fintech</h1>
       <div class="meta-row">
-        <div class="meta-item">
-          <strong>Milind Sahu</strong>
-          BS-MS First Year, IISER Tirupati
-        </div>
-        <div class="meta-item">
-          <strong>Dataset</strong>
-          Freddie Mac Single-Family
-        </div>
-        <div class="meta-item">
-          <strong>Framework</strong>
-          Reliability-Regularized Survival ML
-        </div>
-        <div class="meta-item">
-          <strong>Status</strong>
-          Proposal · No experimental results yet
-        </div>
+        <div class="meta-item"><strong>Milind Sahu</strong>BS-MS First Year, IISER Tirupati</div>
+        <div class="meta-item"><strong>Dataset</strong>Freddie Mac Single-Family</div>
+        <div class="meta-item"><strong>Model</strong>RRSM (proposed)</div>
+        <div class="meta-item"><strong>Status</strong>Proposal · Experiments pending</div>
       </div>
     </div>
-
     <div class="hero-right">
       <h3>Keywords</h3>
       <div class="keyword-list">
@@ -481,35 +260,20 @@
   </div>
 </header>
 
-<!-- ACTIONS -->
 <div class="actions-strip">
-  <a class="btn btn-primary" href="paper.html">
-    <span class="btn-icon">◉</span> Read Paper
-  </a>
-  <a class="btn btn-secondary" href="research.pdf" download="RRSM_Milind_Sahu.pdf">
-    <span class="btn-icon">⬇</span> Download PDF
-  </a>
-  <a class="btn btn-ghost" href="https://github.com/itsmilindsahu/" target="_blank">
-    <span class="btn-icon">◈</span> GitHub Profile
-  </a>
+  <a class="btn btn-primary" href="paper.html">◉ Read Paper</a>
+  <a class="btn btn-secondary" href="research.pdf" download="RRSM_Milind_Sahu.pdf">⬇ Download PDF</a>
+  <a class="btn btn-ghost" href="https://github.com/itsmilindsahu/" target="_blank">◈ GitHub</a>
 </div>
 
-<!-- ABSTRACT -->
 <div class="section">
   <div class="section-label">Abstract</div>
   <h2>The Core Idea</h2>
-  <p>
-    Credit default prediction is usually framed as a binary classification problem, but this framing ignores the <strong>timing of default</strong> and discards information from censored loans that are still active at the observation cutoff.
-  </p>
-  <p>
-    Survival analysis offers a more natural formulation by treating default and prepayment as <strong>time-to-event processes</strong> with explicit handling of censoring. This paper proposes applying reliability-theoretic structure — specifically <em>cohort-level hazard ordering</em> and <em>mean residual lifetime estimation</em> — as additional modeling constraints within machine learning survival models for fintech credit risk.
-  </p>
-  <p>
-    The core question is whether incorporating such constraints improves calibration, temporal stability, and cohort-level consistency compared with otherwise equivalent unconstrained survival models.
-  </p>
+  <p>Credit default prediction is usually framed as a binary classification problem, but this framing ignores the <strong>timing of default</strong> and discards information from censored loans still active at the observation cutoff.</p>
+  <p>Survival analysis offers a more natural formulation by treating default and prepayment as <strong>time-to-event processes</strong> with explicit handling of censoring. This paper proposes applying reliability-theoretic structure — specifically <em>cohort-level hazard ordering</em> and <em>mean residual lifetime estimation</em> — as additional modeling constraints within ML survival models for fintech credit risk.</p>
+  <p>The core question: does incorporating such constraints improve calibration, temporal stability, and cohort-level consistency compared with equivalent unconstrained survival models?</p>
 </div>
 
-<!-- HIGHLIGHTS -->
 <div class="highlights">
   <div class="section-label">At a Glance</div>
   <div class="grid-3">
@@ -531,114 +295,36 @@
   </div>
 </div>
 
-<!-- PDF VIEWER -->
-<div class="pdf-section">
-  <div class="pdf-header">
-    <h2>Full Paper</h2>
-    <div class="pdf-controls">
-      <a class="pdf-btn" href="research.pdf" download="RRSM_Milind_Sahu.pdf">⬇ Download</a>
-      <a class="pdf-btn" href="paper.html">◉ Open Full Viewer</a>
-    </div>
-  </div>
-  <div class="pdf-frame-wrapper">
-    <iframe
-      src="research.pdf"
-      title="Reliability-Aware Survival ML for Credit Risk – Milind Sahu">
-    </iframe>
-  </div>
-</div>
-
-<!-- EXPERIMENT TABLE -->
 <div class="table-section">
   <div class="section-label">Experimental Design</div>
   <h2>Experiment Matrix</h2>
   <table>
     <thead>
-      <tr>
-        <th>#</th>
-        <th>Experiment</th>
-        <th>Primary Metrics</th>
-        <th>Goal</th>
-      </tr>
+      <tr><th>#</th><th>Experiment</th><th>Primary Metrics</th><th>Goal</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="exp-num">01</td>
-        <td>Classification vs. Survival Modeling</td>
-        <td>C-index, AUC, IBS</td>
-        <td>Justify survival framing</td>
-      </tr>
-      <tr>
-        <td class="exp-num">02</td>
-        <td>Regularization Ablation</td>
-        <td>HOVR, ECE, IBS</td>
-        <td>Isolate ordering penalty value</td>
-      </tr>
-      <tr>
-        <td class="exp-num">03</td>
-        <td>Random vs. Time-Based Split</td>
-        <td>AUC, C-index, drop</td>
-        <td>Document evaluation bias</td>
-      </tr>
-      <tr>
-        <td class="exp-num">04</td>
-        <td>Calibration</td>
-        <td>ECE, slope</td>
-        <td>Platt & isotonic post-hoc</td>
-      </tr>
-      <tr>
-        <td class="exp-num">05</td>
-        <td>Feature Set Ablation</td>
-        <td>C-index, IBS</td>
-        <td>Value of longitudinal features</td>
-      </tr>
-      <tr>
-        <td class="exp-num">06</td>
-        <td>Competing Risks</td>
-        <td>Cause C-index</td>
-        <td>Default vs. prepayment</td>
-      </tr>
-      <tr>
-        <td class="exp-num">07</td>
-        <td>Cohort Hazard-Ordering Analysis</td>
-        <td>HOVR, survival curves</td>
-        <td>Economic prior consistency</td>
-      </tr>
-      <tr>
-        <td class="exp-num">08</td>
-        <td>Mean Residual Lifetime</td>
-        <td>MRL comparison</td>
-        <td>Forward-looking risk measure</td>
-      </tr>
-      <tr>
-        <td class="exp-num">09</td>
-        <td>Statistical Robustness</td>
-        <td>CI width, variance</td>
-        <td>5 seeds × 100 bootstrap samples</td>
-      </tr>
-      <tr>
-        <td class="exp-num">10</td>
-        <td>Portfolio-Level Evaluation</td>
-        <td>EL error, top-decile</td>
-        <td>Practical credit risk metrics</td>
-      </tr>
+      <tr><td class="exp-num">01</td><td>Classification vs. Survival Modeling</td><td>C-index, AUC, IBS</td><td>Justify survival framing</td></tr>
+      <tr><td class="exp-num">02</td><td>Regularization Ablation</td><td>HOVR, ECE, IBS</td><td>Isolate ordering penalty value</td></tr>
+      <tr><td class="exp-num">03</td><td>Random vs. Time-Based Split</td><td>AUC, C-index, drop</td><td>Document evaluation bias</td></tr>
+      <tr><td class="exp-num">04</td><td>Calibration</td><td>ECE, slope</td><td>Platt &amp; isotonic post-hoc</td></tr>
+      <tr><td class="exp-num">05</td><td>Feature Set Ablation</td><td>C-index, IBS</td><td>Value of longitudinal features</td></tr>
+      <tr><td class="exp-num">06</td><td>Competing Risks</td><td>Cause C-index</td><td>Default vs. prepayment</td></tr>
+      <tr><td class="exp-num">07</td><td>Cohort Hazard-Ordering Analysis</td><td>HOVR, survival curves</td><td>Economic prior consistency</td></tr>
+      <tr><td class="exp-num">08</td><td>Mean Residual Lifetime</td><td>MRL comparison</td><td>Forward-looking risk measure</td></tr>
+      <tr><td class="exp-num">09</td><td>Statistical Robustness</td><td>CI width, variance</td><td>5 seeds × 100 bootstrap</td></tr>
+      <tr><td class="exp-num">10</td><td>Portfolio-Level Evaluation</td><td>EL error, top-decile</td><td>Practical credit risk metrics</td></tr>
     </tbody>
   </table>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div>
-    <div style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:6px;">Milind Sahu</div>
+    <div style="font-family:Georgia,serif; font-size:1.05rem; margin-bottom:8px;">Milind Sahu</div>
     <a href="https://www.linkedin.com/in/itsmilindsahu/" target="_blank">LinkedIn ↗</a>&nbsp;&nbsp;
     <a href="https://github.com/itsmilindsahu/" target="_blank">GitHub ↗</a>&nbsp;&nbsp;
-    <a href="mailto:ms4401238@gmail.com">ms4401238@gmail.com ↗</a>
+    <a href="mailto:ms4401238@gmail.com">Email ↗</a>
   </div>
-  <div class="foot-right">
-    BS-MS Dual Degree · IISER Tirupati<br/>
-    Early-stage research proposal · 2024–2025<br/>
-    No experimental results reported
-  </div>
+  <div class="foot-right">BS-MS Dual Degree · IISER Tirupati<br/>Early-stage research proposal · 2024–2025</div>
 </footer>
 
 </body>
